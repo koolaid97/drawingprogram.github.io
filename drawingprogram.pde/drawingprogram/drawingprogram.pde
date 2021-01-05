@@ -55,8 +55,6 @@ void draw() {
 }
 
 void mousePressed() {
-  blueink=false;
-  blackink=false;
   quitButtonMouseClicked();
   if ( mouseX>drawingSurfaceX  && mouseX<drawingSurfaceX+drawingSurfaceWidth  && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight ) {
     if (draw == false) {
@@ -71,7 +69,7 @@ void mousePressed() {
   }
 
   //
-  if ( mouseX>52/64 && mouseX<52/64+1/32  && mouseY>1/18 && mouseY<1/18+1/30) {
+  if ( mouseX>cbox2X1  && mouseX<cbox2X1+cbox2X2  && mouseY>cbox2Y1 && mouseY<cbox2Y1+cbox2Y2) {
     blueink=true;
     blackink=false;
   }
