@@ -1,5 +1,6 @@
 
-color  black=#000000, green= #1CFF34, reset, ink;
+color ink, black=#000000;
+color green= #1CFF34;
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
 float drawingDiameter;
 float cbox2X1, cbox2Y1, cbox2X2, cbox2Y2, cbox1X1, cbox1X2, cbox1Y1, cbox1Y2;
@@ -49,12 +50,12 @@ void draw() {
 
   fill(black);
   rect(cbox1X1, cbox1X2, cbox1Y1, cbox1Y2);
-  fill(reset);
+  
   //
 
   fill(green);
   rect(cbox2X1, cbox2Y1, cbox2X2, cbox2Y2);
-  fill(reset);
+
 
 
 
