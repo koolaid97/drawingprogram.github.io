@@ -50,6 +50,14 @@ void draw() {
 
   fill(blue);
   rect(cbox2X1, cbox2Y1, cbox2X2, cbox2Y2);
+  
+    if ( mouseX>cbox2X1  && mouseX<cbox2X1+cbox2X2  && mouseY>cbox2Y1 && mouseY<cbox2Y1+cbox2Y2) {
+    fill(black);
+    rect(cbox2X1, cbox2Y1, cbox2X2, cbox2Y2);
+  } else {
+    fill(blue);
+    rect(cbox2X1, cbox2Y1, cbox2X2, cbox2Y2);
+  }
 
   //
 }
