@@ -7,7 +7,8 @@ Boolean draw=false;
 boolean blueink= false, blackink= false;
 
 void setup() {
-  fullScreen();
+  //fullScreen();
+  size(600,500);
   quitButtonSetup();
   drawingSurfaceX = width*1/4;
   drawingSurfaceY = height*1/5;
