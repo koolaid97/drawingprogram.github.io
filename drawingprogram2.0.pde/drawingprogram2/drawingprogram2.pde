@@ -1,14 +1,14 @@
 
-color ink, black=#000000, blue=#0043CE, reset;
+color  black=#000000, green= #1CFF34, reset, ink;
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
 float drawingDiameter;
 float cbox2X1, cbox2Y1, cbox2X2, cbox2Y2, cbox1X1, cbox1X2, cbox1Y1, cbox1Y2;
 Boolean draw=false;
-boolean blueink= false, blackink= false;
+Boolean greenink=false, blackink=false;
 
 void setup() {
   //fullScreen();
-  size(600,500);
+  size(600, 500);
 
   drawingSurfaceX = width*1/4;
   drawingSurfaceY = height*1/5;
@@ -16,7 +16,7 @@ void setup() {
   drawingSurfaceHeight = height*4/5;
   //
 
-  drawingDiameter = width*1/100;
+  drawingDiameter = width*4/100;
   //
   rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
   //
@@ -33,36 +33,35 @@ void setup() {
 
 void draw() {
 
-  if (blueink == true && blackink == false) {
-    ink = blue;
+  if (greenink == true && blackink == false) {
+    ink = green;
   } else { 
-  ink = black;
-}
- 
+    ink = black;
+  }
 
 
 
-if (draw == true && mouseX>drawingSurfaceX  && mouseX<drawingSurfaceX+drawingSurfaceWidth  && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight  ) {
-  fill(ink);
-  line(mouseX, mouseY, pmouseX, pmouseY);
-}
 
-fill(black);
-rect(cbox1X1, cbox1X2, cbox1Y1, cbox1Y2);
-fill(reset);
-//
+  if (draw == true && mouseX>drawingSurfaceX  && mouseX<drawingSurfaceX+drawingSurfaceWidth  && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight  ) {
+    fill(ink);
+    line(mouseX, mouseY, pmouseX, pmouseY);
+  }
 
-fill(blue);
-rect(cbox2X1, cbox2Y1, cbox2X2, cbox2Y2);
-fill(reset);
+  fill(black);
+  rect(cbox1X1, cbox1X2, cbox1Y1, cbox1Y2);
+  fill(reset);
+  //
+
+  fill(green);
+  rect(cbox2X1, cbox2Y1, cbox2X2, cbox2Y2);
+  fill(reset);
 
 
 
-//
+  //
 }
 
 void mousePressed() {
-
   if ( mouseX>drawingSurfaceX  && mouseX<drawingSurfaceX+drawingSurfaceWidth  && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight ) {
     if (draw == false) {
       draw = true;
@@ -70,14 +69,24 @@ void mousePressed() {
       draw = false;
     }
   }
+
+
+
+  if ( mouseX>cbox2X1  && mouseX<cbox2X1+cbox2X2  && mouseY>cbox2Y1 && mouseY<cbox2Y1+cbox2Y2) {
+
+    blackink=false;
+    greenink=true;
+  }
+  //
+
+
+
+
+
   if ( mouseX>cbox1X1  && mouseX<cbox1X1+cbox1X2  && mouseY>cbox1Y1 && mouseY<cbox1Y1+cbox1Y2) {
-    blueink=false;
+    greenink=false;
     blackink=true;
   }
 
   //
-  if ( mouseX>cbox2X1  && mouseX<cbox2X1+cbox2X2  && mouseY>cbox2Y1 && mouseY<cbox2Y1+cbox2Y2) {
-    blueink=true;
-    blackink=false;
-  }
 }
