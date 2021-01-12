@@ -1,6 +1,5 @@
 
-color ink, black=#000000;
-color green= #1CFF34;
+color ink, green= #1CFF34;
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
 float drawingDiameter;
 float cbox2X1, cbox2Y1, cbox2X2, cbox2Y2, cbox1X1, cbox1X2, cbox1Y1, cbox1Y2;
@@ -34,12 +33,9 @@ void setup() {
 
 void draw() {
 
-  if (greenink == true && blackink == false) {
+  if (greenink == true) {
     ink = green;
-  } else { 
-    ink = black;
   }
-
 
 
 
@@ -48,9 +44,9 @@ void draw() {
     line(mouseX, mouseY, pmouseX, pmouseY);
   }
 
-  fill(black);
+
   rect(cbox1X1, cbox1X2, cbox1Y1, cbox1Y2);
-  
+
   //
 
   fill(green);
