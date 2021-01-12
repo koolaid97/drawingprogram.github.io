@@ -18,13 +18,20 @@ void setup() {
   inkredyy = 30;
 
   //
-  
+
   rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
 }
 {
 }
 
 void draw() {
+  println(ink);
+  if (redink == true) {
+    ink = red;
+  }
+  if (blackink == true) {
+    ink = black;
+  }
   if (draw == true  && mouseX>drawingSurfaceX  && mouseX<drawingSurfaceX+drawingSurfaceWidth  && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight ) {
     fill(ink);
 
@@ -33,16 +40,6 @@ void draw() {
   fill(red);
   rect(inkredx, inkredy, inkredxx, inkredyy);
   fill(white);
-  if (redink == true) {
-    ink = red;
-  }
-  if (blackink == true) {
-    ink = black;
-  }
-
-
-
-
 
 
 
@@ -67,12 +64,11 @@ void mousePressed() {
       draw = false;
     }
   }
-  
-  
+
+
   if ( mouseX>inkredx  && mouseX<inkredx+inkredxx  && mouseY>inkredy && mouseY<inkredy+inkredyy) {
     println("red");
     redink=true;
     blackink=false;
-
   }
 }
