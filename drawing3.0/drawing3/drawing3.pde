@@ -1,8 +1,9 @@
-color ink, black=#050505, red=#FA0307, white=#FFFFFF, blue=#022D98, green=#05FF24;
+color ink, black=#050505, red=#FA0307, white=#FFFFFF, blue=#022D98, green=#05FF24, pink=#FA3DF1, purple=#720B98;
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
-float inkredx, inkredy, inkredxx, inkredyy, inkbluex, inkbluey, inkbluexx, inkblueyy, inkgreenx, inkgreeny, inkgreenxx, inkgreenyy, inktx, inkty, inktxx, inktyy;
-Boolean draw=false;
-Boolean redink=false, blackink=false, greenink=false, blueink=false, thickink=false;
+float drawingDiameter;
+float inkredx, inkredy, inkredxx, inkredyy, inkbluex, inkbluey, inkbluexx, inkblueyy, inkgreenx, inkgreeny, inkgreenxx, inkgreenyy, inktx, inkty, inktxx, inktyy, inkblackx, inkblacky, inkblackxx, inkblackyy, inkpinkx, inkpinky, inkpinkxx, inkpinkyy, inkpurplex, inkpurpley, inkpurplexx, inkpurpleyy, x, y, xx;
+Boolean draw=false, drawc=false;
+Boolean redink=false, blackink=false, greenink=false, blueink=false, thickink=false, lblueink= false, pinkink = false, purpleink=false;
 void setup() {
   fullScreen();
 
@@ -22,16 +23,34 @@ void setup() {
   inkgreenxx= 30;
   inkgreenyy = 30;
   //
-  inkbluex = width*54/64;
-  inkbluey = height*1/30;
+  inkbluex = width*50/64;
+  inkbluey = height*3/30;
   inkbluexx= 30;
   inkblueyy = 30;
+  //
+  inkpinkx = width*52/64;
+  inkpinky = height*3/30;
+  inkpinkxx= 30;
+  inkpinkyy = 30;
+  //
+  inkblackx = width*54/64;
+  inkblacky = height*3/30;
+  inkblackxx= 30;
+  inkblackyy = 30;
+  //
+  inkpurplex = width*54/64;
+  inkpurpley = height*1/30;
+  inkpurplexx= 30;
+  inkpurpleyy = 30;
   //
   inktx = width*28/64;
   inkty = height*1/30;
   inktxx= 30;
   inktyy = 30;
   //
+  x = width *2/30;
+  y = height*1/3;
+  xx= width* 1/30;
 
   rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
   fill(red);
@@ -42,6 +61,13 @@ void setup() {
   rect(inkbluex, inkbluey, inkbluexx, inkblueyy);
   fill(white);
   rect(inktx, inkty, inktxx, inktyy);
+  fill(black);
+  rect(inkblackx, inkblacky, inkblackxx, inkblackyy);
+  fill(pink);
+  rect(inkpinkx, inkpinky, inkpinkxx, inkpinkyy);
+  fill(purple);
+  rect(inkpurplex, inkpurpley, inkpurplexx, inkpurpleyy);
+  ellipse(x, y, xx, xx);
 }
 {
 }
@@ -61,14 +87,26 @@ void draw() {
     ink = blue;
   }
   if (thickink == true) {
-    strokeWeight(45);;
+    strokeWeight(45);
+    ;
+  }
+  if (blueink == true) {
+    ink = blue;
+  }
+  if (purpleink == true) {
+    ink = purple;
+  }
+  if (pinkink == true) {
+    ink = pink;
   }
   if (draw == true  && mouseX>drawingSurfaceX  && mouseX<drawingSurfaceX+drawingSurfaceWidth  && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight ) {
     stroke(ink);
     line(mouseX, mouseY, pmouseX, pmouseY);
   }
-
-
+  if (drawc== true  && mouseX>drawingSurfaceX  && mouseX<drawingSurfaceX+drawingSurfaceWidth  && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight ) {
+    fill(ink);
+    ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
+  }
 
   //
 }
@@ -85,30 +123,72 @@ void mousePressed() {
       draw = false;
     }
   }
+  if ( mouseX>x && mouseX<x+xx  && mouseY>y && mouseY<y+xx) {
+
+    println("drawing surface");
+    if (drawc == false) {
+      drawc = true;
+    } else {
+      drawc = false;
+    }
+  }
 
 
-  if ( mouseX>inkredx  && mouseX<inkredx+inkredxx  && mouseY>inkredy && mouseY<inkredy+inkredyy) {
-    println("red");
-    redink=true;
-    blackink=false;
-    greenink=false;
-    blueink=false;
-  }
-  if ( mouseX>inkgreenx  && mouseX<inkgreenx+inkgreenxx  && mouseY>inkgreeny && mouseY<inkgreeny+inkgreenyy) {
-    println("green");
-    redink=false;
-    blackink=false;
-    greenink=true;
-    blueink=false;
-  }
-  if ( mouseX>inkbluex  && mouseX<inkbluex+inkbluexx  && mouseY>inkbluey && mouseY<inkbluey+inkblueyy) {
-    println("blue");
-    redink=false;
-    blackink=false;
-    greenink=false;
-    blueink=true;
-  }
+    if ( mouseX>inkredx  && mouseX<inkredx+inkredxx  && mouseY>inkredy && mouseY<inkredy+inkredyy) {
+      println("red");
+      redink=true;
+      blackink=false;
+      greenink=false;
+      blueink=false;
+      pinkink=false;
+      purpleink=false;
+    }
+    if ( mouseX>inkgreenx  && mouseX<inkgreenx+inkgreenxx  && mouseY>inkgreeny && mouseY<inkgreeny+inkgreenyy) {
+      println("green");
+      redink=false;
+      blackink=false;
+      greenink=true;
+      blueink=false;
+      pinkink=false;
+      purpleink=false;
+    }
+    if ( mouseX>inkbluex  && mouseX<inkbluex+inkbluexx  && mouseY>inkbluey && mouseY<inkbluey+inkblueyy) {
+      println("blue");
+      redink=false;
+      blackink=false;
+      greenink=false;
+      blueink=true;
+      pinkink=false;
+      purpleink=false;
+    }
     if ( mouseX>inktx  && mouseX<inktx+inktxx  && mouseY>inkty && mouseY<inkty+inktyy) {
-    thickink=true;
-}
-}
+      thickink=true;
+    }
+    if ( mouseX>inkpinkx  && mouseX<inkpinkx+inkpinkxx  && mouseY>inkpinky && mouseY<inkpinky+inkpinkyy) {
+      println("blue");
+      redink=false;
+      blackink=false;
+      greenink=false;
+      blueink=false;
+      pinkink=true;
+      purpleink=false;
+    }
+    if ( mouseX>inkpurplex  && mouseX<inkpurplex+inkpurplexx  && mouseY>inkpurpley && mouseY<inkpurpley+inkpurpleyy) {
+      println("blue");
+      redink=false;
+      blackink=false;
+      greenink=false;
+      blueink=false;
+      pinkink=false;
+      purpleink=true;
+    }
+    if ( mouseX>inkblackx  && mouseX<inkblackx+inkblackxx  && mouseY>inkblacky && mouseY<inkblacky+inkblackyy) {
+      println("blue");
+      redink=false;
+      blackink=true;
+      greenink=false;
+      blueink=false;
+      pinkink=false;
+      purpleink=false;
+    }
+  }
