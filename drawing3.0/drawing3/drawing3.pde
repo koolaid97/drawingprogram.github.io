@@ -1,11 +1,11 @@
-color ink, black=#050505, red=#FA0307, white=#FFFFFF, blue=#022D98, green=#05FF24, pink=#FA3DF1, purple=#720B98;
+color ink, black=#050505, red=#FA0307, white=#FFFFFF, blue=#022D98, green=#05FF24, pink=#FA3DF1, purple=#720B98, yellow=#F2E700;
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
 float drawingDiameter;
 PImage pic1;
-float picX1, picY1, picImageWidthRatio1, picImageHeightRatio1, picWidth1, picHeight1;
+float picX1, picY1, picImageWidthRatio1, picImageHeightRatio1, picWidth1, picHeight1, e, e1, e2, e3, p1, p2, p3, p4;
 float inkredx, inkredy, inkredxx, inkredyy, inkbluex, inkbluey, inkbluexx, inkblueyy, inkgreenx, inkgreeny, inkgreenxx, inkgreenyy, inktx, inkty, inktxx, inktyy, inkblackx, inkblacky, inkblackxx, inkblackyy, inkpinkx, inkpinky, inkpinkxx, inkpinkyy, inkpurplex, inkpurpley, inkpurplexx, inkpurpleyy, x, y, xx, i1, i11, i111, i1111;
 Boolean draw=false, drawc=false;
-Boolean redink=false, blackink=false, greenink=false, blueink=false, thickink=false, lblueink= false, pinkink = false, purpleink=false, pic1on= false;
+Boolean redink=false, blackink=false, greenink=false, blueink=false, thickink=false, lblueink= false, pinkink = false, purpleink=false, pic1on= false, eon=false, pon=false;
 void setup() {
   fullScreen();
 
@@ -58,7 +58,18 @@ void setup() {
   i11 = height*4/5;
   i111= width* 1/30;
   i1111 =height* 1/30;
-
+  //
+  e = width *13/30;
+  e1 = height*3/30;
+  e2= width* 1/30;
+  e3 =height* 1/30;
+  //
+  p1 = width *10/30;
+  p2 = height*3/30;
+  p3= width* 1/30;
+  p4 =height* 1/30;
+  rect(p1, p2, p3, p4);
+  rect(e, e1, e2, e3);
   rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
   fill(red);
   rect(inkredx, inkredy, inkredxx, inkredyy);
@@ -83,6 +94,10 @@ void setup() {
   picWidth1 = drawingSurfaceWidth * picImageWidthRatio1; //remains longer side, "*1"
   picHeight1 = picWidth1 * picImageHeightRatio1; //becomes shorter side, "*<1"
   if (picHeight1 >drawingSurfaceHeight) println("Image #1 display issues"); //dimension might be 'cut-off'
+  if (pic1on == true)
+  {
+    image(pic1, picX1, picY1, picWidth1, picHeight1);
+  }
 }
 {
 }
@@ -122,9 +137,11 @@ void draw() {
     fill(ink);
     ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
   }
-  if (pic1on == true)
-  {
-    image(pic1, picX1, picY1, picWidth1, picHeight1);
+  if (pon == true) {
+    ink = yellow;
+  }
+  if (eon == true) {
+    ink =white;
   }
 
   //
@@ -161,6 +178,8 @@ void mousePressed() {
     blueink=false;
     pinkink=false;
     purpleink=false;
+    pon=false;
+    eon=false;
   }
   if ( mouseX>inkgreenx  && mouseX<inkgreenx+inkgreenxx  && mouseY>inkgreeny && mouseY<inkgreeny+inkgreenyy) {
     println("green");
@@ -170,6 +189,8 @@ void mousePressed() {
     blueink=false;
     pinkink=false;
     purpleink=false;
+    pon=false;
+    eon=false;
   }
   if ( mouseX>inkbluex  && mouseX<inkbluex+inkbluexx  && mouseY>inkbluey && mouseY<inkbluey+inkblueyy) {
     println("blue");
@@ -179,6 +200,8 @@ void mousePressed() {
     blueink=true;
     pinkink=false;
     purpleink=false;
+    pon=false;
+    eon=false;
   }
   if ( mouseX>inktx  && mouseX<inktx+inktxx  && mouseY>inkty && mouseY<inkty+inktyy) {
     thickink=true;
@@ -191,6 +214,8 @@ void mousePressed() {
     blueink=false;
     pinkink=true;
     purpleink=false;
+    pon=false;
+    eon=false;
   }
   if ( mouseX>inkpurplex  && mouseX<inkpurplex+inkpurplexx  && mouseY>inkpurpley && mouseY<inkpurpley+inkpurpleyy) {
     println("blue");
@@ -200,6 +225,8 @@ void mousePressed() {
     blueink=false;
     pinkink=false;
     purpleink=true;
+    pon=false;
+    eon=false;
   }
   if ( mouseX>inkblackx  && mouseX<inkblackx+inkblackxx  && mouseY>inkblacky && mouseY<inkblacky+inkblackyy) {
     println("blue");
@@ -209,8 +236,33 @@ void mousePressed() {
     blueink=false;
     pinkink=false;
     purpleink=false;
+    pon=false;
+    eon=false;
   }
   if ( mouseX>i1  && mouseX<i1+i111  && mouseY>i11 && mouseY<i11+i1111) {
-   pic1on=true;
+    pic1on=true;
+    image(pic1, picX1, picY1, picWidth1, picHeight1);
+  }
+  if ( mouseX>e  && mouseX<e+e2  && mouseY>e1 && mouseY<e1+e3) {
+    println("blue");
+    redink=false;
+    blackink=false;
+    greenink=false;
+    blueink=false;
+    pinkink=false;
+    purpleink=false;
+    pon=false;
+    eon=true;
+  }
+  if ( mouseX>p1  && mouseX<p1+p3  && mouseY>p2 && mouseY<p2+p4) {
+    println("blue");
+    redink=false;
+    blackink=false;
+    greenink=false;
+    blueink=false;
+    pinkink=false;
+    purpleink=false;
+    pon=true;
+    eon=false;
   }
 }
