@@ -1,14 +1,14 @@
 color ink, black=#050505, red=#FA0307, white=#FFFFFF, blue=#022D98, green=#05FF24, pink=#FA3DF1, purple=#720B98, yellow=#F2E700, reset;
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
 float drawingDiameter;
-PImage pic1;
-float picX1, picY1, picImageWidthRatio1, picImageHeightRatio1, picWidth1, picHeight1, e, e1, e2, e3, p1, p2, p3, p4, r1, r2, r3, r4;
+PImage pic1, pic2;
+float picX1, picY1, picImageWidthRatio1, picImageHeightRatio1, picWidth1, picHeight1, picX2, picY2, picImageWidthRatio2, picImageHeightRatio2, picWidth2, picHeight2, e, e1, e2, e3, p1, p2, p3, p4, r1, r2, r3, r4, p11, p22, p33, p44;
 float inkredx, inkredy, inkredxx, inkredyy, inkbluex, inkbluey, inkbluexx, inkblueyy, inkgreenx, inkgreeny, inkgreenxx, inkgreenyy, inktx, inkty, inktxx, inktyy, inkblackx, inkblacky, inkblackxx, inkblackyy, inkpinkx, inkpinky, inkpinkxx, inkpinkyy, inkpurplex, inkpurpley, inkpurplexx, inkpurpleyy, x, y, xx, i1, i11, i111, i1111;
 Boolean draw=false, drawc=false;
 Boolean redink=false, blackink=false, greenink=false, blueink=false, thickink=false, lblueink= false, pinkink = false, purpleink=false, pic1on= false, eon=false, pon=false;
 void setup() {
   fullScreen();
-
+  pic2 = loadImage("free-spongebob-characters-coloring-pages-download-clip-art-printable-excelent-pdf-picture-inspirations.jpg");
   pic1 = loadImage("super_mario_lineart_by_mmalzin_d5zp4n0-fullview.jpg");
   drawingSurfaceX = width*1/4;
   drawingSurfaceY = height*1/5;
@@ -25,7 +25,7 @@ void setup() {
   r3= width*1/8;
   r4 = height*1/10;
   //
-  
+
   inkgreenx = width*52/64;
   inkgreeny = height*1/30;
   inkgreenxx= 30;
@@ -74,8 +74,13 @@ void setup() {
   p2 = height*3/30;
   p3= width* 1/30;
   p4 =height* 1/30;
-  
-  
+  //
+  p11 = width *2/30;
+  p22 = height*4.5/5;
+  p33= width* 1/30;
+  p44 =height* 1/30;
+
+  rect(p11, p22, p33, p44);
   rect(p1, p2, p3, p4);
   rect(e, e1, e2, e3);
   rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
@@ -103,6 +108,14 @@ void setup() {
   picWidth1 = drawingSurfaceWidth * picImageWidthRatio1; //remains longer side, "*1"
   picHeight1 = picWidth1 * picImageHeightRatio1; //becomes shorter side, "*<1"
   if (picHeight1 >drawingSurfaceHeight) println("Image #1 display issues"); //dimension might be 'cut-off'
+  //
+  picImageWidthRatio2 = 700.0/700.0; //Image width is longer, thus 1
+  picImageHeightRatio2 = 450.0/700.0; //Image height is shorter, thus <1
+  picX2 = drawingSurfaceX;
+  picY2 = drawingSurfaceY;
+  picWidth2 = drawingSurfaceWidth * picImageWidthRatio2; //remains longer side, "*1"
+  picHeight2 = picWidth2 * picImageHeightRatio2; //becomes shorter side, "*<1"
+  if (picHeight2 >drawingSurfaceHeight) println("Image #1 display issues"); //dimension might be 'cut-off'
   if (pic1on == true)
   {
     image(pic1, picX1, picY1, picWidth1, picHeight1);
@@ -274,8 +287,11 @@ void mousePressed() {
     pon=true;
     eon=false;
   }
-    if ( mouseX>r1  && mouseX<r1+r3  && mouseY>r2 && mouseY<r2+r4) {
+  if ( mouseX>r1  && mouseX<r1+r3  && mouseY>r2 && mouseY<r2+r4) {
     fill(white);
     rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+  }
+  if ( mouseX>p11  && mouseX<p11+p33  && mouseY>p22 && mouseY<p22+p44) {
+    image(pic2,picX2, picY2, picWidth2, picHeight2);
   }
 }
