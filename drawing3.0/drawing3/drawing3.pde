@@ -9,6 +9,7 @@ String title3= "images below";
 String title4= "ink colour";
 String title5="draw in elipses or lines";
 String title6="pen is left, eraser is right";
+String title7="RESET";
 PImage pic1, pic2;
 float picX1, picY1, picImageWidthRatio1, picImageHeightRatio1, picWidth1, picHeight1, picX2, picY2, picImageWidthRatio2, picImageHeightRatio2, picWidth2, picHeight2, e, e1, e2, e3, p1, p2, p3, p4, r1, r2, r3, r4, p11, p22, p33, p44;
 float inkredx, inkredy, inkredxx, inkredyy, th1, th2, th3, th4, thh1, thh2, thh3, thh4, inkbluex, inkbluey, inkbluexx, inkblueyy, inkgreenx, inkgreeny, inkgreenxx, inkgreenyy, inktx, inkty, inktxx, inktyy, inkblackx, inkblacky, inkblackxx, inkblackyy, inkpinkx, inkpinky, inkpinkxx, inkpinkyy, inkpurplex, inkpurpley, inkpurplexx, inkpurpleyy, x, y, xx, i1, i11, i111, i1111;
@@ -162,6 +163,14 @@ void setup() {
     t10=height*3.2/5;
     t11=width*2/15;
     t12= height*0.5/5;
+    //
+    t13= width*50/64;
+    t14= height*4/30;
+    t15= width*6/64;
+    t16=height*2/30;
+    //
+    t17= width*2/30;
+    t18=height
     
     rect(p11, p22, p33, p44);
     rect(p1, p2, p3, p4);
@@ -218,12 +227,12 @@ void setup() {
     text(title2, t5, t6, t7, t8);
     textAlign (CENTER, CENTER);
     fill(blue); //reset
-    titleFont = createFont ("Impact", 55);
+    titleFont = createFont ("Impact", 30);
     textFont(titleFont);
     text(title3, t9, t10, t11, t12);
     textAlign (CENTER, CENTER);
     fill(blue); //reset
-    titleFont = createFont ("Impact", 55);
+    titleFont = createFont ("Impact", 20);
     textFont(titleFont);
     text(title4, t13, t14, t15, t16);
     textAlign (CENTER, CENTER);
