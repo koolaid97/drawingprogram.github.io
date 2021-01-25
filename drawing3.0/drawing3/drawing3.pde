@@ -2,12 +2,12 @@ color ink, black=#050505, red=#FA0307, white=#FFFFFF, blue=#022D98, green=#05FF2
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
 float drawingDiameter;
 PFont titleFont;
-float t1, t2, t3, t4, t5, t6, t7, t8, t9 ,t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21, t22, t23, t24;
+float t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21, t22, t23, t24, t25, t26, t27, t28;
 String title = "Music!!! P to play and pause, S to stop, F to fast forward, R to reverse, N and B for next and previous";
 String title2= "ink thickness ->";
 String title3= "images below";
 String title4= "ink colour";
-String title5="draw in elipses or lines";
+String title5="draw in elipses ";
 String title6="pen is left, eraser is right";
 String title7="RESET";
 PImage pic1, pic2;
@@ -32,6 +32,7 @@ int currentSong = numberOfSongs - numberOfSongs;
 
 void setup() {
   fullScreen();
+  quitButtonSetup();
   minim = new Minim(this);
   song[currentSong] = minim.loadFile("../../music/Muriel - Bobby Richards.mp3");
   song[currentSong+=1] = minim.loadFile("../../music/Phrase Prant - josh pan.mp3");
@@ -170,8 +171,19 @@ void setup() {
     t16=height*2/30;
     //
     t17= width*2/30;
-    t18=height
+    t18=height * 1/3;
+    t19=width*1/5;
+    t20=height*2/15;
+
+    t21= width*10/30;
+    t22= height*1/7;
+    t23= width* 3/30;
+    t24= height*2/30;
     
+    t25= width*1/2;
+    t26=height*1/30;
+    t27=width*1/8;
+    t28= height* 1/12;
     rect(p11, p22, p33, p44);
     rect(p1, p2, p3, p4);
     rect(e, e1, e2, e3);
@@ -237,19 +249,25 @@ void setup() {
     text(title4, t13, t14, t15, t16);
     textAlign (CENTER, CENTER);
     fill(blue); //reset
-    titleFont = createFont ("Impact", 55);
+    titleFont = createFont ("Impact", 25);
     textFont(titleFont);
     text(title5, t17, t18, t19, t20);
     textAlign (CENTER, CENTER);
     fill(blue); //reset
-    titleFont = createFont ("Impact", 55);
+    titleFont = createFont ("Impact", 15);
     textFont(titleFont);
     text(title6, t21, t22, t23, t24);
+    textAlign (CENTER, CENTER);
+    fill(blue); //reset
+    titleFont = createFont ("Impact", 45);
+    textFont(titleFont);
+    text(title7, t25, t26, t27, t28);
     textAlign (CENTER, CENTER);
   }
 }
 
 void draw() {
+  quitButtonDraw();
   println(ink);
   if (redink == true) {
     ink = red;
@@ -373,7 +391,7 @@ void keyPressed() {
   }
 }
 void mousePressed() {
-
+  quitButtonMouseClicked();
   fill(white);
   if ( mouseX>drawingSurfaceX  && mouseX<drawingSurfaceX+drawingSurfaceWidth  && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) {
 
